@@ -17,6 +17,7 @@
   --second-bgc-color: #2f303a;
   --third-bgc-color: #f5f4fa;
   --icon-color: #afb1b8;
+  --time-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   width: 100%;
@@ -101,13 +102,49 @@ img {
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
+
+  position: relative;
+  transition: color 250ms var(--time-function);
 }
 .site-nav:hover,
 .site-nav:focus {
   color: var(--accent-text-color);
 }
+.site-nav::before {
+  content: "";
+
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  transition: transform 200ms var(--time-function);
+  transform: scaleX(0);
+  height: 4px;
+  border-radius: 2px;
+
+  background-color: var(--accent-text-color);
+}
+.site-nav:hover::before,
+.site-nav:focus::before {
+  transform: scaleX(1);
+  /* width: 100%;
+  left: 0; */
+}
 .site-nav.current {
   color: var(--accent-text-color);
+}
+.site-nav.current::after {
+  content: "";
+
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  bottom: 0;
+
+  background-color: var(--accent-text-color);
 }
 /* Contacts */
 
@@ -126,6 +163,8 @@ img {
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
+
+  transition: color 250ms var(--time-function);
 }
 .contact-icon {
   fill: currentColor;
@@ -190,6 +229,12 @@ img {
   font-size: 16px;
   line-height: 1.87;
   text-decoration: none;
+
+  transition: transform 250ms var(--time-function);
+}
+.button:hover,
+.button:focus {
+  transform: scale(1.2);
 }
 /* Main */
 .section-work {
@@ -257,6 +302,27 @@ img {
 }
 .images {
   display: block;
+}
+.images-box {
+  position: relative;
+}
+.text-img {
+  position: absolute;
+  bottom: 0;
+  height: 70px;
+  width: 100%;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  /* align-items: center; */
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--primary-wight-color);
+  background: rgba(47, 48, 58, 0.8);
+  padding: 27px 0;
+  margin: 0;
 }
 .section.command {
   background-color: var(--third-bgc-color);
@@ -339,6 +405,8 @@ img {
   margin-right: 10px;
 
   color: var(--icon-color);
+
+  transition: background 250ms var(--time-function);
 }
 .link-command-icon:last-child {
   margin-right: 0;
@@ -353,6 +421,7 @@ img {
   height: 20px;
 
   fill: currentColor;
+  transition: fill 250ms var(--time-function);
 }
 .command-icon:hover,
 .command-icon:focus {
@@ -380,6 +449,9 @@ img {
   height: 92px;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+
+  transition: color 250ms var(--time-function),
+    border 250ms var(--time-function);
 }
 .customer-icon {
   width: 106px;
@@ -416,6 +488,8 @@ footer .link-logo {
 }
 .contact-footer {
   color: rgba(255, 255, 255, 0.6);
+
+  transition: color 250ms var(--time-function);
 }
 .contact-footer:hover,
 .contact-footer:focus {
@@ -459,6 +533,8 @@ footer .link-logo {
 
   color: var(--primary-wight-color);
   background: rgba(255, 255, 255, 0.1);
+
+  transition: background-color 250ms var(--time-function);
 }
 .link-subscribe-icon:hover,
 .link-subscribe-icon:focus {
@@ -501,6 +577,9 @@ footer .link-logo {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.62;
+
+  transition: background-color 250ms var(--time-function),
+    color 250ms var(--time-function);
 }
 
 .filter:hover,
@@ -523,12 +602,35 @@ footer .link-logo {
 
 .link-project {
   display: block;
+
+  transition: box-shadow 250ms var(--time-function);
 }
 .link-project:focus,
 .link-project:hover {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
-  cursor: pointer;
+}
+.card-thumb {
+  position: relative;
+  overflow: hidden;
+}
+.card-text {
+  padding: 63px 24px;
+  margin: 0;
+
+  font-size: 18px;
+  line-height: 1.5;
+
+  background: rgba(33, 150, 243, 0.9);
+  color: var(--primary-wight-color);
+
+  position: absolute;
+  top: 295px;
+  transition: top 250ms var(--time-function);
+}
+.link-project:focus .card-text,
+.link-project:hover .card-text {
+  top: 0;
 }
 .card-content {
   padding: 20px 24px;
