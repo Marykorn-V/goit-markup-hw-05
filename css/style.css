@@ -8,7 +8,6 @@
 *::after {
   box-sizing: border-box;
 }
-
 :root {
   --accent-text-color: #2196f3;
   --title-text-color: #212121;
@@ -660,4 +659,55 @@ footer .link-logo {
 }
 a p {
   color: var(--primary-text-color);
+}
+/* Модальное окно */
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  transition: opacity 1000ms var(--time-function),
+    visibility 1000ms var(--time-function);
+}
+.backdrop.is-hidden .modal {
+  transform: scale(1.5);
+  transition: transform 1000ms var(--time-function);
+}
+.modal {
+  width: 528px;
+  min-height: 581px;
+  border-radius: 4px;
+  background-color: var(--primary-wight-color);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%) scale(1);
+}
+.close-modal {
+  position: absolute;
+  display: block;
+  margin-left: auto;
+  top: 8px;
+  right: 8px;
+  padding: 0;
+  background-color: transparent;
+
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.close-modal-icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+}
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
